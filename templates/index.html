@@ -1,0 +1,369 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>R | Restro</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!---navigation bar starts-->
+    <header>
+        <a href="#" class="logo"><i class="fas-fa-utensils"></i>Resturant.</a>
+
+        <nav class="navbar">
+        
+        <a class="active" href="" name="home">home</a>
+      
+        <a href="dishes/">dishes</a>
+        <a href="about/">about</a>
+        <a href="menu/">menu</a>
+        
+        <a href="order/">order</a>
+        <a href="search/">search</a>
+        {% if request.user.is_authenticated %}
+        <a href="profile/">{{request.user}}</a>
+        
+        <a href="logout/">log out</a>
+        {% endif %}
+    </nav>
+
+
+    </header>
+
+
+
+<!--navigation end-->
+
+<!--slider------->
+
+<section class="home" id="home">
+
+    <div class="slider">
+
+        {% for i in obj %}
+        <div class="wrapper">
+
+
+            <div class="slide">
+                <div class="content">
+                    <span> our special dish</span>
+                    <h3>{{i.name}}</h3>
+                    <p>{{i.desc}}</p>
+                    
+                    <a class="btn" href="/order/">Order Now</a>
+                    
+                </div>
+                <div class="image">
+                    <img src="{{i.img.url}}" alt="">
+                </div>
+            </div>
+
+
+
+
+           
+
+        </div>
+        {% endfor %}
+     
+    </div>
+
+    
+    </section>
+<!--slider ends -->
+
+<!-----dishes-->
+<section class="dishes" id="dishes">
+
+    <h3 class="sub-heading"> our dishes </h3>
+    <h1 class="heading"> popular dishes </h1>
+    <div class="box-container">
+        {% for j in objec %}
+        <div class="box">
+            <a href="#" class="fas-fa-heart"></a>
+            <a href="#" class="fas-fa-eye"></a>
+            <img src="{{j.img.url}}" alt="">
+            <h3>{{j.name}}</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+
+            </div>
+            <span>{{j.prise}}$</span>
+            <form action="{{j.code}}/profile/cart/" method="post">
+                {%csrf_token%}
+                <button class="btn" name="">Add to Cart</button>
+            </form>
+        </div>
+        {% endfor %}
+
+
+        
+
+    </div>
+</section>
+
+
+<section class="about" id="about">
+    <h3 class="sub-heading"> about us</h3>
+    <h1 class="heading"> why choose us?</h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="{% static 'images/food19.jpg' %}" alt="">
+        </div>
+<div class="content">
+    <h3>Best Drinks in the counrty</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ratione veritatis alias. Excepturi obcaecati sequi eligendi. Odio veniam cupiditate sapiente ex nesciunt dignissimos optio voluptatibus? Ad labore sint molestiae vel.</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium similique delectus!.</p>
+    <div class="icons-container">
+
+        <div class="icons">
+            <i class="fas fa-shipping-fast"></i>
+            <span>free delivery</span>
+        </div>
+
+        
+        <div class="icons">
+            <i class="fas fa-dollar-sign"></i>
+            <span>easy payment</span>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-headset"></i>
+            <span>24/7 service</span>
+        </div>
+    </div>
+    <a href="#" class="btn">learn more</a>
+</div>
+    </div>
+</section>
+
+
+<section class="menu" id="menu">
+
+    <h1 class="heading"> today's speciality  </h1>
+
+<div class="box-container">
+    {% for k in oob %}
+    <div class="box">
+        <div class="image">
+            <img src="{{k.img.url}}" alt="">
+            <a href="#" class="fas fa-heart"></a>
+        </div>
+        <div class="content">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <h3>{{k.name}}</h3>
+            <p>
+                {{k.desc}}
+            </p>
+            <a href="/order/" class="btn">Order Now</a>
+            <span class="pice">{{k.prise}}</span>
+            
+
+        </div>
+        
+    </div>
+    {% endfor %}
+
+
+    
+</div>
+
+
+</section>
+
+
+<section class="review" id="review">
+
+    <h3 class="sub-heading"> customer's review </h3>
+    <h1 class="heading"> testimonials</h1>
+    {% for l in oop %}
+    <div class="slider">
+
+        <div class="wrapper">
+
+            <div class="slide">
+
+                <i class="fas fa-quote-right"></i>
+                <div class="user">
+                   
+                   <div class="user-info">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                   </div>
+                </div>
+                <h2>{{l.name}}</h2>
+                <p>{{l.rev}}</p>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<section class="order" id="order">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="inputBox">
+            <div class="input">
+                <span>your name</span>
+                <input type="text"placeholder="enter your name" name="name" required>
+            </div>
+
+       
+       
+    
+            <div class="input">
+                <span>your message</span>
+                <textarea  placeholder="enter your feedback" id="" cols="30" rows="10" name="msg" required></textarea>
+
+            </div>
+
+            
+
+            </div>
+        </div>
+
+        </div>
+
+        <input type="submit" value="Share" class="btn" name="btn">
+    </form>
+</section>
+
+
+<section class="order" id="order">
+
+    <h3 class="sub-heading"> order now </h3>
+    <h1 class="heading"> free and fast </h1>
+
+    <form action="payment" method="post">
+        {% csrf_token %}
+
+        <div class="inputBox">
+            <div class="input">
+                <span>your name</span>
+                <input type="text"placeholder="enter your name" name="name" required>
+            </div>
+
+            <div class="input">
+                <span>your number</span>
+                <input type="number"placeholder="enter your number"name="number" required>
+            </div>
+
+        </div>
+
+        <div class="inputBox">
+            <div class="input">
+                <span>your order</span>
+                <input type="text"placeholder="enter food name" name="foodname" required>
+            </div>
+
+            <div class="input">
+                <span> additonal food</span>
+                <input type="text"placeholder="extra with food" name="extrafood">
+            </div>
+
+            
+        <div class="inputBox">
+            <div class="input">
+                <span>how much</span>
+                <input type="number"placeholder="how many orders" name="count" required>
+            </div>
+
+            
+        </div>
+
+        
+        <div class="inputBox">
+            <div class="input">
+                <span>your address</span>
+                <textarea  placeholder="enter your address" id="" cols="30" rows="10" name="address" required></textarea>
+            </div>
+
+            <div class="input">
+                <span>your message</span>
+                <textarea placeholder="enter your message" id="" cols="30" rows="10" name="msg"></textarea>
+            </div>
+
+        </div>
+
+        </div>
+
+        <input type="submit" value="order now" class="btn" name="btn">
+    </form>
+
+</section>
+
+<section class="footer">
+
+      <div class="box-container">
+
+        <div class="box">
+            <h3> locations</h3>
+            <a href=""> Delhi</a>
+            <a href="">hydrabad</a>
+            <a href=""> Kolkata</a>
+            <a href="">Mumbai</a>
+            <a href="">vizag</a>
+        </div>
+
+        <div class="box">
+            <h3> quick links</h3>
+            <a href="home">home</a>
+            <a href="dishes">dishes</a>
+            <a href="about"> about</a>
+            <a href="menu"> menu</a>
+            <a href="review"> review</a>
+            <a href="order"> order</a>
+        </div>
+        <div class="box">
+            <h3> contact info</h3>
+            <a href=""> +91-7783837501</a>
+            <a href="">+91-7667528592</a>
+            <a href=""> fayzan599@gmail.com</a>
+            <a href=""> elifthelp332@gmail.com</a>
+            <a href=""> debashishsarkar90072@gmail.com</a>
+            <a href=""> jharkhand , india -815354</a>
+        </div>
+        <div class="box">
+            <h3> follow us</h3>
+            <a href="www.facebook.com"> facebook</a>
+            <a href="www.behance.com"> behance</a>
+            <a href="www.instagram.com"> instagram</a>
+            <a href="www.twitter.com">twitter</a>
+        </div>
+
+
+      </div>    
+
+
+      <div class="credit"> copyright @ {{year}} by <span>coder FD</span></div>
+</section>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

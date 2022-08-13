@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+}
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),rgba(14, 13, 13, 0.5)), url("{% static 'images/bg.jpg' %}");
+    background-size: cover;
+}
+form{
+    margin-top: 145px;
+    text-align: center;
+
+}
+input{
+    display: block;
+    width: 350px;
+    height:40px;
+    margin:20px;
+    border:none;
+    outline: none;
+    font-size:20px;
+    border-bottom: 1px solid white;
+    background: transparent;
+    color:white;
+    text-align: center;
+}
+
+button{
+    width:350px;
+    height:40px;
+    font-size: 16px;
+    background-color: #27ae60;
+    border: none;
+    color:white;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+form h1{
+    margin-bottom: 30px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:#27ae60;
+}
+::placeholder{
+    color:silver;
+    text-align: center;
+}
+form h2{
+    align-items: center;
+    font-size: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    margin:18px;
+    color: silver;
+}
+form h2:hover{
+    color:#27ae60;
+}
+.fa-user {
+    position: absolute;
+    top:34%;
+    left:37.5%;
+    font-size: 1rem;
+    color:white;
+}
+.fa-lock{
+    position: absolute;
+    top:51%;
+    left:37.5%;
+    font-size: 1rem;
+    color:white;
+}
+.fa-eye-slash{
+    position: absolute;
+    top:51%;
+    left:61%;
+    font-size: 1rem;
+    color:white;
+}
+.fa-lock-open{
+    position: absolute;
+    top:43%;
+    left:37.5%;
+    font-size: 1rem;
+    color:white;
+}
+.credit{
+    color: silver;
+}
+</style>
+<body> 
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1> Create a new profile</h1>
+        
+          <input type="text" placeholder="Enter your full name" name="name" required>
+          <input type="text" placeholder="Enter Password" name="pwd" required>
+          <input type="password" placeholder="Confirm Password" name="c_pwd" required>
+          <button type="submit">CREATE ACCOUNT</button>
+          {%for msg in messages%}
+            <h2 style="color:azure;">{{msg}}</h2>
+          {%endfor%}
+          <a href="/login/"><h2>Already have an account? Login </h2></a>
+         
+    </form>
+    <div class="credit"> copyright @ {{year}} by <span>coder FD</span></div>
+    
+</body>
+</html>

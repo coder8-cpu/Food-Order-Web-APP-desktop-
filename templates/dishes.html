@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>R | DISHES</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head><br><br><br><br><br><br>
+
+<header>
+    <a href="#" class="logo"><i class="fas fa-utensils"></i>Resturant.</a>
+
+    <nav class="navbar">
+    
+    <a class="" href="home/" name="home">home</a>
+  
+    <a href="" class="active">dishes</a>
+    <a href="about/">about</a>
+    <a href="menu/">menu</a>
+   
+    <a href="order/">order</a>
+    <a href="search/">search</a>
+    <a href="profile/cart/">Cart</a>
+    
+    
+</nav>
+
+
+</div>
+</header>
+<body>
+    
+    <section class="dishes" id="dishes">
+
+        <h3 class="sub-heading"> our dishes </h3>
+        <h1 class="heading"> popular dishes </h1>
+        <div class="box-container">
+            {% for d in d%}
+            <div class="box">
+ 
+                    <a href="#" class="fas-fa-heart"></a>
+                    <a href="#" class="fas-fa-eye"></a>
+                    <img src="{{d.img.url}}" alt="">
+                    <h3>{{d.name}}</h3>
+                    <h4>{{d.desc}}</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+    
+                </div>
+                    <span>{{d.prise}}$</span>
+                    
+                    <button type="submit" name="" class="btn" onclick="location.href='{{d.code}}/profile/cart' ">Add To Cart</button>
+                    
+                    
+                    
+            </div>
+            {% endfor %}
+            
+        </div>
+    </section>
+
+    <section class="footer">
+
+        <div class="box-container">
+  
+          <div class="box">
+              <h3> locations</h3>
+              <a href=""> Delhi</a>
+              <a href="">hydrabad</a>
+              <a href=""> Kolkata</a>
+              <a href="">Mumbai</a>
+              <a href="">vizag</a>
+          </div>
+  
+          <div class="box">
+              <h3> quick links</h3>
+              <a href="home">home</a>
+              <a href="dishes">dishes</a>
+              <a href="about"> about</a>
+              <a href="menu"> menu</a>
+              <a href="review"> review</a>
+              <a href="order"> order</a>
+          </div>
+          <div class="box">
+              <h3> contact info</h3>
+              <a href=""> +91-7783837501</a>
+              <a href="">+91-7667528592</a>
+              <a href=""> fayzan599@gmail.com</a>
+              <a href=""> elifthelp332@gmail.com</a>
+              <a href=""> debashishsarkar90072@gmail.com</a>
+              <a href=""> jharkhand , india -815354</a>
+          </div>
+          <div class="box">
+              <h3> follow us</h3>
+              <a href="www.facebook.com"> facebook</a>
+              <a href="www.behance.com"> behance</a>
+              <a href="www.instagram.com"> instagram</a>
+              <a href="www.twitter.com">twitter</a>
+          </div>
+  
+  
+        </div>    
+  
+  
+        <div class="credit"> copyright @ {{year}} by <span>coder FD</span></div>
+  </section>
+  
+</body>
+</html>

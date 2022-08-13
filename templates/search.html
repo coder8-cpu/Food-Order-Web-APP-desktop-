@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R | SEARCH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head><br><br><br><br><br><br>
+<header>
+    <a href="#" class="logo"><i class="fas-fa-utensils"></i>Resturant.</a>
+
+    <nav class="navbar">
+    
+    <a  href="home/" name="home">home</a>
+  
+    <a href="dishes/">dishes</a>
+    <a href="about/">about</a>
+    <a href="menu/">menu</a>
+  
+    <a href="order/">order</a>
+    <a href="" class="active">search</a>
+</nav>
+</header>
+<body>
+
+    <div style="background-color:rgb(166, 162, 154); height:100vh;">
+        <form action="" method="post">
+            {% csrf_token %}
+        <input type="text" placeholder="search here..." style="margin-left:470px; margin-top:325px; padding:8px; width:400px;">
+        <a href="{{linkname}}"><input type="submit" value="Go" style="padding:8px;" class="btn" name="search" ></a>
+        </form>
+    </div> 
+    <div style="width:180px; height:70px; text-align:center; color:greenyellow; border: 5px solid coral; margin-left:470px; margin-bottom:120px;">
+        <h1>Recent Searches</h1>
+        {% for output in so %}
+                {{output.sear}}
+        {% endfor %}
+    </div>
+</body>
+</html>
